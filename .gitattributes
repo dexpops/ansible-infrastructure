@@ -2,4 +2,5 @@
 .gitignore !filter !diff
 
 hosts/** filter=git-crypt diff=git-crypt
+vultr.ini filter=git-crypt diff=git-crypt
 
