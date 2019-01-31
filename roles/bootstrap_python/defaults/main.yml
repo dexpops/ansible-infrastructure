@@ -1,0 +1,10 @@
+---
+
+bootstrap_python__override_system_hostname: True
+bootstrap_python__bin_dir: "/opt/bin"
+bootstrap_python__interpreter: "{{ bootstrap_python__bin_dir }}/python"
+bootstrap_python__pip_modules:
+  - docker-py
+  - netaddr
+bootstrap_python__pip_extra_args:
+bootstrap_python__auto_upgrade: False

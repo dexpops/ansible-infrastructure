@@ -1,0 +1,24 @@
+# {{ ansible_managed }}
+{% macro params(docker_systemd_service__name, vals) %}
+{% for v in vals %}-{{ docker_systemd_service__name }} {{ v }} {% endfor %}
+{% endmacro %}
+
+[Unit]
+After=docker.service
+PartOf=docker.service
+Requires=docker.service
+
+[Service]
+{% if docker_systemd_service__env is defined %}
+EnvironmentFile={{ docker_systemd_service__sysconf_dir }}/{{ docker_systemd_service__name }}
+{% endif %}
+ExecStartPre=-/usr/bin/docker rm -f {{ docker_systemd_service__name }}
+ExecStart=/usr/bin/docker run --name {{ docker_systemd_service__name }} --rm {% if (docker_systemd_service__env is defined) or docker_systemd_service__remote_env_file is defined %}--env-file {{ docker_systemd_service__sysconf_dir }}/{{ docker_systemd_service__name }}{% if docker_systemd_service__capabilities is defined %} --cap-add={{ docker_systemd_service__capabilities }}{% endif %} {% endif %}{{ params('v', docker_systemd_service__volumes) }}{{ params('p', docker_systemd_service__ports) }}{{ params('-link', docker_systemd_service__links) }}{{ params('l', docker_systemd_service__labels) }}{{ docker_systemd_service__args | default('') |trim }} {{ docker_systemd_service__image }} {{ cmd | default('') | trim }}
+ExecStop=/usr/bin/docker stop {{ docker_systemd_service__name }}
+ExecStopPost=-/usr/bin/docker rm -f {{ docker_systemd_service__name }}
+
+SyslogIdentifier={{ docker_systemd_service__name }}
+Restart=always
+
+[Install]
+WantedBy=docker.service

@@ -1,0 +1,20 @@
+---
+
+- import_tasks: check_vars.yml
+  tags:
+    - ansible_python_coreos
+    - ansible_python_coreos:check_vars
+    - check_vars
+
+- import_tasks: check_os.yml
+  tags:
+    - ansible_python_coreos
+    - ansible_python_coreos:check_os
+    - check_os
+
+- import_tasks: bootstrap.yml
+  become: True
+  tags:
+    - ansible_python_coreos
+    - ansible_python_coreos:bootstrap
+    - bootstrap

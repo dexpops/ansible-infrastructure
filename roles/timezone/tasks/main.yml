@@ -1,0 +1,13 @@
+---
+
+- import_tasks: check_vars.yml
+  tags:
+    - timezone
+    - timezone:check_vars
+    - check_vars
+
+- import_tasks: zone.yml
+  tags:
+    - timezone
+    - timezone:zone
+    - zone

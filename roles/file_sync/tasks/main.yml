@@ -1,0 +1,17 @@
+- import_tasks: check_vars.yml
+  tags:
+    - file_sync
+    - file_sync:check_vars
+    - check_vars
+
+- import_tasks: image.yml
+  tags:
+    - file_sync
+    - file_sync:image
+    - image
+
+- import_tasks: container.yml
+  tags:
+    - file_sync
+    - file_sync:container
+    - container

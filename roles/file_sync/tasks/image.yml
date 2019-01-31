@@ -1,0 +1,7 @@
+---
+
+- name: "Pull {{ file_sync__image }} image"
+  become: true
+  docker_image:
+    name: "{{ file_sync__image }}"
+    state: present

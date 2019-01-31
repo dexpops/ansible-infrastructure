@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+mkdir -p {{bootstrap_os__swap_file_dir}}
+fallocate -l {{bootstrap_os__swap_file_size}} {{bootstrap_os__swap_file}}
+chmod 600 {{bootstrap_os__swap_file}}
+mkswap {{bootstrap_os__swap_file}}

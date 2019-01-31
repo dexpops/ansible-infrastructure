@@ -1,0 +1,17 @@
+- import_tasks: check_vars.yml
+  tags:
+    - insn_masternode
+    - insn_masternode:check_vars
+    - check_vars
+
+- import_tasks: image.yml
+  tags:
+    - insn_masternode
+    - insn_masternode:image
+    - image
+
+- import_tasks: container.yml
+  tags:
+    - insn_masternode
+    - insn_masternode:container
+    - container

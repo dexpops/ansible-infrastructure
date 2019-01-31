@@ -1,0 +1,36 @@
+---
+
+- name: "Uninstall | Disable and stop {{ systemd_path_watch__name }}_restart.path for state {{ systemd_path_watch__state }}"
+  become: true
+  ignore_errors: yes
+  systemd:
+    name: "{{ systemd_path_watch__name }}_restart.path"
+    enabled: False
+    state: stopped
+
+- name: "Uninstall | Disable and stop {{ systemd_path_watch__name }}_restart.service for state {{ systemd_path_watch__state }}"
+  become: true
+  ignore_errors: yes
+  systemd:
+    name: "{{ systemd_path_watch__name }}_restart.service"
+    enabled: False
+    state: stopped
+
+- name: "Uninstall | Remove unit {{ systemd_path_watch__name }}_restart.path"
+  become: true
+  ignore_errors: yes
+  file:
+    path: "/etc/systemd/system/{{ systemd_path_watch__name }}_restart.path"
+    state: absent
+
+- name: "Uninstall | Remove unit {{ systemd_path_watch__name }}_restart.service"
+  become: true
+  ignore_errors: yes
+  file:
+    path: "/etc/systemd/system/{{ systemd_path_watch__name }}_restart.service"
+    state: absent
+
+- name: Uninstall | Reload systemd units
+  become: true
+  command: systemctl daemon-reload
+  changed_when: False

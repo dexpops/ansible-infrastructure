@@ -1,0 +1,8 @@
+[Unit]
+Description={{ systemd_path_watch__name }}
+
+[Service]
+{% for step in systemd_path_watch__commands %}
+{{step.type}}{{step.operand}}{{step.command}}
+{% endfor %}
+Type=oneshot

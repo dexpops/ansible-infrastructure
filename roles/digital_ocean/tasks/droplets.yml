@@ -1,0 +1,43 @@
+- name: Setting hostname
+  set_fact:
+    __digital_ocean__hostname: "{{ server.region_id }}-{{ server.hostname }}"
+
+- debug: var=__digital_ocean__hostname
+
+- name: "Handle Droplet"
+  digital_ocean:
+    state: "{{ server.state }}"
+    command: droplet
+    name: "{{ __digital_ocean__hostname }}"
+    api_token: "{{ digital_ocean__api_token }}"
+    size_id: "{{ server.size_id }}"
+    region_id: "{{ server.region_id }}"
+    image_id: "{{ server.image_id }}"
+    private_networking: "{{ server.private_networking }}"
+    wait_timeout: 500
+    unique_name: yes
+    ssh_key_ids:
+      - 23928489
+      - 12150430
+  delegate_to: localhost
+  register: __digital_ocean__created_droplet
+
+- name: Debug from created Droplet
+  debug:
+    msg:
+      - "Created Droplet successfully!"
+      - "Hostname: {{ __digital_ocean__hostname }}"
+      - "IPv4: {{ __digital_ocean__created_droplet.droplet.ip_address }}"
+      - "State: {{ server.state }}"
+  when:
+    - server.state == "present"
+
+- name: Adding IP to bootstrap group
+  changed_when: False
+  add_host:
+    name: "{{ __digital_ocean__created_droplet.droplet.ip_address }}"
+    groups:
+      - "{{ __digital_ocean__hostname.split(\"-\")[1] | lower }}"
+      - bootstrap
+  when:
+    - server.state == "present"

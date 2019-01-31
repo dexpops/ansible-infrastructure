@@ -1,0 +1,16 @@
+---
+
+#
+# Checking that required variables are set
+#
+#
+# Checking that required variables are set
+#
+- name: Checking that required variables are set
+  fail: msg="{{ item }} is empty or not defined"
+  when:
+    - vars[item] is undefined or vars[item] == ""
+  with_items:
+    - digital_ocean__api_token
+    - digital_ocean__authorized_keys
+    - digital_ocean__hostname

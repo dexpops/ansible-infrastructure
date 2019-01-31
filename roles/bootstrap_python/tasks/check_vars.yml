@@ -1,0 +1,12 @@
+---
+#
+# Checking that required variables are set
+#
+
+- name: Checking that required variables are set
+  fail: msg="{{ item }} is empty or not defined"
+  when: vars[item] is undefined or vars[item] == ""
+  with_items:
+    - bootstrap_python__override_system_hostname
+    - bootstrap_python__bin_dir
+    - bootstrap_python__interpreter

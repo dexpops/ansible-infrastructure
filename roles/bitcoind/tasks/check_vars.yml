@@ -1,0 +1,17 @@
+---
+
+#
+# Checking that required variables are set
+#
+- name: Checking that required variables are set
+  fail: msg="{{ item }} is empty or not defined"
+  when: vars[item] is undefined or vars[item] == ""
+  with_items:
+    - bitcoind__container_name
+    - bitcoind__image
+    - bitcoind__restart
+    - bitcoind__restart_policy
+    - bitcoind__state
+    - bitcoind__volumes
+    - bitcoind__timezone
+    - bitcoind__hostname

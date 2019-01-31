@@ -1,0 +1,37 @@
+---
+
+- name: "Install | Create path unit {{ systemd_path_watch__name }}_restart.path"
+  become: true
+  template:
+    src: path.j2
+    dest: /etc/systemd/system/{{ systemd_path_watch__name }}_restart.path
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install | Create path unit {{ systemd_path_watch__name }}_restart.service
+  become: true
+  template:
+    src: restart.j2
+    dest: /etc/systemd/system/{{ systemd_path_watch__name }}_restart.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install | Enable {{ systemd_path_watch__name }} restart
+  become: true
+  systemd:
+    name: '{{ systemd_path_watch__name }}_restart.service'
+    daemon_reload: true
+    enabled: "{{ systemd_path_watch__enabled }}"
+    masked: "{{ systemd_path_watch__masked }}"
+    state: "stopped"
+
+- name: Install | Enable and start {{ systemd_path_watch__name }} path modified
+  become: true
+  systemd:
+    name: '{{ systemd_path_watch__name }}_restart.path'
+    daemon_reload: true
+    enabled: "{{ systemd_path_watch__enabled }}"
+    masked: "{{ systemd_path_watch__masked }}"
+    state: "{{ systemd_path_watch__state }}"

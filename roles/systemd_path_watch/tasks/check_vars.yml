@@ -1,0 +1,15 @@
+---
+
+#
+# Checking that required variables are set
+#
+- name: "Check vars | Checking that required variables are set"
+  fail: msg="{{ item }} is empty or not defined"
+  when: vars[item] is undefined or vars[item] == ""
+  with_items:
+    - systemd_path_watch__name
+    - systemd_path_watch__enabled
+    - systemd_path_watch__masked
+    - systemd_path_watch__state
+    - systemd_path_watch__path
+    - systemd_path_watch__commands

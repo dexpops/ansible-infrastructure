@@ -1,0 +1,7 @@
+---
+systemd_path_watch__name: "restart_service"
+systemd_path_watch__enabled: "yes"
+systemd_path_watch__masked: "no"
+systemd_path_watch__state: "started"
+systemd_path_watch__path: "/opt/path/to/watch"
+systemd_path_watch__commands: []

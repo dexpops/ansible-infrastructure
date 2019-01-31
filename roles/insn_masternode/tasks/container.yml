@@ -1,0 +1,25 @@
+- name: "Container | Handle INSN masternode"
+  become: true
+  docker_container:
+    name: "{{ insn_masternode__container_name}}"
+    image: "{{ insn_masternode__image}}"
+    restart: "{{ insn_masternode__restart }}"
+    restart_policy: "{{ insn_masternode__restart_policy }}"
+    state: "{{ insn_masternode__state }}"
+    hostname: "{{ insn_masternode__hostname }}"
+    volumes: "{{ insn_masternode__volumes }}"
+    network_mode: bridge
+    ports:
+      - "{{insn_masternode__rpc_port}}:{{insn_masternode__rpc_port}}"
+      - "{{insn_masternode__listen_port}}:{{insn_masternode__listen_port}}"
+    env:
+      TZ: "{{ insn_masternode__timezone }}"
+      RPC_PASSWORD: "{{ insn_masternode__rpc_password }}"
+      RPC_ALLOW_IP: "127.0.0.1"
+      RPC_CONNECT_IP: "127.0.0.1"
+      EXTERNAL_IP: "{{ ansible_default_ipv4.address }}"
+      MASTERNODE_PRIV_KEY: "{{ insn_masternode__private_key }}"
+      TX_INDEX: "{{ insn_masternode__tx_index }}"
+      SEED_NODE: "{{ insn_masternode__seed_node }}"
+      RPC_PORT: "{{ insn_masternode__rpc_port }}"
+      PORT: "{{ insn_masternode__listen_port }}"

@@ -1,0 +1,21 @@
+---
+
+- name: Check OS | See if OS check should be skipped
+  raw: stat /opt/bin/.skip_bootstrap
+  register: skip_bootstrap
+  failed_when: false
+  changed_when: false
+  check_mode: no
+
+- name: Check OS | See if bootstrap has already run
+  raw: stat /opt/bin/.bootstrapped
+  register: need_bootstrap
+  failed_when: false
+  changed_when: false
+  check_mode: no
+
+- name: Check OS | Run check_os.sh
+  when: skip_bootstrap.rc != 0 and need_bootstrap.rc != 0
+  become: true
+  script: check_os.sh
+  check_mode: no

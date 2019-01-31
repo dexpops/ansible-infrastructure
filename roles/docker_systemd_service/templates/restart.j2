@@ -1,0 +1,7 @@
+[Unit]
+Description=Restart-{{ docker_systemd_service__name }}
+
+[Service]
+ExecStartPre=/bin/sleep 10
+ExecStart=/bin/systemctl restart {{ docker_systemd_service__name }}_container.service
+Type=oneshot

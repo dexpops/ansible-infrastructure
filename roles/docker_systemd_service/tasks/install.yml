@@ -1,0 +1,38 @@
+---
+- name: Install | Create ENV file for {{ docker_systemd_service__name }}_container.service
+  become: true
+  template:
+    src: env.j2
+    dest: "{{ docker_systemd_service__sysconf_dir }}/{{ docker_systemd_service__name }}"
+    owner: root
+    group: root
+    mode: '0600'
+  notify: Restart systemd service
+  when:
+    - docker_systemd_service__env is defined
+
+- name: Install | Copy remote ENV file for {{ docker_systemd_service__name }}_container.service
+  become: true
+  command: "cp {{docker_systemd_service__remote_env_file}} {{ docker_systemd_service__sysconf_dir }}/{{ docker_systemd_service__name }}"
+  notify: Restart systemd service
+  when:
+    - docker_systemd_service__remote_env_file is defined
+
+- name: Install | Create unit {{ docker_systemd_service__name }}_container.service
+  become: true
+  template:
+    src: unit.j2
+    dest: /etc/systemd/system/{{ docker_systemd_service__name }}_container.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart systemd service
+
+- name: Install | Enable and start {{ docker_systemd_service__name }}
+  become: true
+  systemd:
+    name: '{{ docker_systemd_service__name }}_container.service'
+    daemon_reload: true
+    enabled: "{{ docker_systemd_service__enabled }}"
+    masked: "{{ docker_systemd_service__masked }}"
+    state: "{{ docker_systemd_service__state }}"

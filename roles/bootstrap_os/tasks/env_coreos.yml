@@ -1,0 +1,7 @@
+---
+
+- name: Create env file /etc/profile.env
+  become: True
+  template:
+    src: profile.env.j2
+    dest: /etc/profile.env

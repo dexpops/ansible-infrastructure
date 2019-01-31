@@ -1,0 +1,4 @@
+{% for cluster_type in netbox__inventory.cluster_types %}
+- name: {{ cluster_type.name }}
+  slug: {{ cluster_type.slug }}
+{% endfor %}

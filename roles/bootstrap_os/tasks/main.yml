@@ -1,0 +1,32 @@
+---
+
+- import_tasks: check_vars.yml
+  tags:
+    - bootstrap_os
+    - bootstrap_os:check_vars
+    - check_vars
+
+- import_tasks: docker_coreos.yml
+  when:
+    - ansible_distribution == "Container Linux by CoreOS"
+  tags:
+    - bootstrap_os
+    - bootstrap_os:docker
+    - docker
+
+- import_tasks: swap_coreos.yml
+  when:
+    - ansible_distribution == "Container Linux by CoreOS"
+    - bootstrap_os__create_swap
+  tags:
+    - bootstrap_os
+    - bootstrap_os:swap_space
+    - swap_space
+
+- import_tasks: env_coreos.yml
+  when:
+    - ansible_distribution == "Container Linux by CoreOS"
+  tags:
+    - bootstrap_os
+    - bootstrap_os:env_coreos
+    - env_coreos

@@ -1,0 +1,25 @@
+# ------------------------------------------------------------------------------------------
+# Maintainer: Karsten Kaj Jakobsen <karsten@karstenjakobsen.dk>
+# ------------------------------------------------------------------------------------------
+
+# This bootstraps python for CoreOS
+- hosts: bootstrap
+  gather_facts: False
+
+  roles:
+
+    # Bootstrap Python for Ansible
+    - role: bootstrap_python
+
+- hosts: bootstrap
+
+  roles:
+
+    # Setup os
+    - role: bootstrap_os
+
+    # Ensure ssh keys for common default users
+    - role: ssh_keys
+
+    # Setup timezone for host
+    - role: timezone

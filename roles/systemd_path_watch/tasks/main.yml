@@ -1,0 +1,21 @@
+---
+
+- import_tasks: check_vars.yml
+  tags:
+    - systemd_path_restart
+    - systemd_path_restart:check_vars
+    - check_vars
+
+- import_tasks: install.yml
+  when: systemd_path_watch__state != "absent"
+  tags:
+    - systemd_path_restart
+    - systemd_path_restart:install
+    - install
+
+- import_tasks: uninstall.yml
+  when: systemd_path_watch__state == "absent"
+  tags:
+    - systemd_path_restart
+    - systemd_path_restart:uninstall
+    - uninstall

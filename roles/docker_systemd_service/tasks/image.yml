@@ -1,0 +1,8 @@
+---
+
+- name: "Image | Pull docker_systemd image {{ docker_systemd_service__image }}"
+  become: true
+  docker_image:
+    name: "{{ docker_systemd_service__image }}"
+    state: present
+  notify: Restart systemd service

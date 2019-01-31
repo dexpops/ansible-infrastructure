@@ -1,0 +1,6 @@
+digital_ocean__api_token:
+digital_ocean__authorized_keys:
+digital_ocean__private_networking: True
+digital_ocean__hostname:
+digital_ocean__state:
+digital_ocean__droplets: []

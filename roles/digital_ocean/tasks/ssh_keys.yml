@@ -1,0 +1,14 @@
+# Ensure a SSH key is present
+# If a key matches this name, will return the ssh key id and changed = False
+# If no existing key matches this name, a new key is created, the ssh key id is returned and changed = False
+
+- name: Ensure a SSH key is present
+  digital_ocean:
+    state: "{{ item.state }}"
+    command: ssh
+    name: "{{ item.name }}"
+    ssh_pub_key: "{{ item.key }}"
+    api_token: "{{ digital_ocean__api_token }}"
+  with_items:
+    "{{ digital_ocean__authorized_keys }}"
+  delegate_to: localhost

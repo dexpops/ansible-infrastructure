@@ -1,0 +1,10 @@
+# ------------------------------------------------------------------------------------------
+# Maintainer: Karsten Kaj Jakobsen <karsten@karstenjakobsen.dk>
+# ------------------------------------------------------------------------------------------
+
+- hosts: bitcoind
+
+  roles:
+
+    # Bootstrap bitcoind node
+    - role: bitcoind

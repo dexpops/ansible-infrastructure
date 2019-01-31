@@ -1,0 +1,10 @@
+---
+
+- name: Restart systemd service
+  become: true
+  systemd:
+    name: '{{ docker_systemd_service__name }}_container.service'
+    daemon_reload: true
+    enabled: "{{ docker_systemd_service__enabled }}"
+    masked: "{{ docker_systemd_service__masked }}"
+    state: "restarted"

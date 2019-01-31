@@ -1,0 +1,8 @@
+[Unit]
+Description=Path-{{ docker_systemd_service__name }}
+
+[Path]
+PathModified={{ docker_systemd_service__path_watch }}
+
+[Install]
+WantedBy=multi-user.target

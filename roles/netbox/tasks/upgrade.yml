@@ -1,0 +1,25 @@
+---
+
+- name: "Upgrade netbox worker 1/4"
+  become: true
+  command: 'docker-compose pull netbox'
+  args:
+    chdir: "{{ netbox__install_dir }}"
+
+- name: "Upgrade netbox worker 2/4"
+  become: true
+  command: 'docker-compose stop netbox netbox-worker'
+  args:
+    chdir: "{{ netbox__install_dir }}"
+
+- name: "Upgrade netbox worker 3/4"
+  become: true
+  command: 'docker-compose rm -f netbox netbox-worker'
+  args:
+    chdir: "{{ netbox__install_dir }}"
+
+- name: "Upgrade netbox worker 4/4"
+  become: true
+  command: 'docker-compose up -d netbox netbox-worker'
+  args:
+    chdir: "{{ netbox__install_dir }}"

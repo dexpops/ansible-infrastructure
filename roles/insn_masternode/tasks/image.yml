@@ -1,0 +1,7 @@
+---
+
+- name: "Pull INSN masternode image"
+  become: true
+  docker_image:
+    name: "{{ insn_masternode__image }}"
+    state: present

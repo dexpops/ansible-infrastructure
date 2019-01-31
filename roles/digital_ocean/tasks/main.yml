@@ -1,0 +1,22 @@
+# Ensure a SSH key is present
+# If a key matches this name, will return the ssh key id and changed = False
+# If no existing key matches this name, a new key is created, the ssh key id is returned and changed = False
+
+- import_tasks: check_vars.yml
+  tags:
+    - digital_ocean
+    - digital_ocean:check_vars
+    - check_vars
+
+- import_tasks: ssh_keys.yml
+  tags:
+    - digital_ocean
+    - digital_ocean:ssh_keys
+    - ssh_keys
+
+- include_tasks: droplets.yml
+  with_items: "{{ digital_ocean__droplets }}"
+  loop_control:
+    loop_var: server
+  tags:
+    - always

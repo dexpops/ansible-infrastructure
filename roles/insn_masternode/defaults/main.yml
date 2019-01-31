@@ -1,0 +1,15 @@
+insn_masternode__container_name: insn_masternode
+insn_masternode__image:
+insn_masternode__restart: no
+insn_masternode__restart_policy: always
+insn_masternode__state: started
+insn_masternode__hostname:
+insn_masternode__volumes:
+  - insn-files:/root/.INSN
+insn_masternode__timezone: "{{ timezone__zone }}"
+insn_masternode__rpc_password:
+insn_masternode__seed_node: insn.cryptocoderz.com
+insn_masternode__private_key:
+insn_masternode__tx_index:
+insn_masternode__rpc_port: "10257"
+insn_masternode__listen_port: "10255"
