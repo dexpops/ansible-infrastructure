@@ -21,6 +21,14 @@ So in the most cases, I’m strongly for the provisioning because it’s unavoid
 # How to use Ansible with Terraform
 Now, returning to the actual provisioning I found 3 ways to use Ansible with Terraform after reading the heated discussion at this GitHub issue. Read on to find the one that’s most suitable for you.
 
+# Ansivle terraform invengtory
+command ansible-playbook -i hosts/inventory_inf playbooks/infrastructure.yml
+
+https://github.com/adammck/terraform-inventory/blob/master/bin/dist
+
+create own version `./dist 0.8.0`
+
+
 
 
 

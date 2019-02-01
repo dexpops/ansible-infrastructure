@@ -1,6 +1,0 @@
----
-
-- name: "Set timezone to {{ timezone__zone }}"
-  become: true
-  timezone:
-    name: "{{ timezone__zone }}"
