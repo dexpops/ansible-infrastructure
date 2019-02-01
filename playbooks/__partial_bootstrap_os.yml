@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------------------
 
 # This bootstraps python for CoreOS
-- hosts: bootstrap
+- hosts: all
   gather_facts: False
 
   roles:
@@ -11,7 +11,7 @@
     # Bootstrap Python for Ansible
     - role: bootstrap_python
 
-- hosts: bootstrap
+- hosts: all
 
   roles:
 

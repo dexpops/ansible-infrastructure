@@ -3,9 +3,9 @@
 # Deploy and setup bitcoin services
 # ------------------------------------------------------------------------------------------
 
-- import_playbook: __partial_vps_cloud.yml
-  tags:    
-    - infrastructure:vps_cloud
+# - import_playbook: __partial_vps_cloud.yml
+#   tags:
+#     - infrastructure:vps_cloud
 
 - import_playbook: __partial_bootstrap_os.yml
   tags:

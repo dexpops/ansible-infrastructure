@@ -1,6 +1,6 @@
 .gitattributes !filter !diff
 .gitignore !filter !diff
 
-hosts/** filter=git-crypt diff=git-crypt
 *.tfs* filter=git-crypt diff=git-crypt
+*.tfv* filter=git-crypt diff=git-crypt
 variables.tf filter=git-crypt diff=git-crypt
