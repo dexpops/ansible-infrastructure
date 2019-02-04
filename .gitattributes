@@ -2,5 +2,3 @@
 .gitignore !filter !diff
 
 hosts/** filter=git-crypt diff=git-crypt
-*.tfs* filter=git-crypt diff=git-crypt
-variables.tf filter=git-crypt diff=git-crypt
