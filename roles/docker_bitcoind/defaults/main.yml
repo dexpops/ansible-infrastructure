@@ -1,0 +1,14 @@
+# wget http://utxosets.blob.core.windows.net/public/utxo-snapshot-bitcoin-mainnet-551636.tar
+docker_bitcoind__container_name: bitcoind
+docker_bitcoind__image:
+docker_bitcoind__restart: no
+docker_bitcoind__restart_policy: always
+docker_bitcoind__state: started
+docker_bitcoind__hostname: "{{ ansible_hostname }}"
+docker_bitcoind__volumes:
+  - bitcoind-volume:/app
+  - /utxo:/utxo:ro
+docker_bitcoind__timezone: "{{ timezone__zone }}"
+docker_bitcoind__fast_sync_mode: "1"
+docker_bitcoind__utxo_snapshot: "/utxo/utxo-snapshot.tar"
+docker_bitcoind__utxo_marker: /utxo/.finished_utxo

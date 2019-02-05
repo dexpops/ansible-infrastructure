@@ -1,0 +1,17 @@
+---
+
+#
+# Checking that required variables are set
+#
+- name: Checking that required variables are set
+  fail: msg="{{ item }} is empty or not defined"
+  when: vars[item] is undefined or vars[item] == ""
+  with_items:
+    - docker_vpncloud__container_name
+    - docker_vpncloud__image
+    - docker_vpncloud__restart
+    - docker_vpncloud__restart_policy
+    - docker_vpncloud__state
+    - docker_vpncloud__volumes
+    - docker_vpncloud__timezone
+    - docker_vpncloud__hostname

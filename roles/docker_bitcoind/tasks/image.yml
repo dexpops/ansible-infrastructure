@@ -1,0 +1,7 @@
+---
+
+- name: "Pull {{ docker_bitcoind__image }} image"
+  become: true
+  docker_image:
+    name: "{{ docker_bitcoind__image }}"
+    state: present

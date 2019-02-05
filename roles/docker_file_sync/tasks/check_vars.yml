@@ -1,0 +1,22 @@
+---
+
+#
+# Checking that required variables are set
+#
+- name: Checking that required variables are set
+  fail: msg="{{ item }} is empty or not defined"
+  when: vars[item] is undefined or vars[item] == ""
+  with_items:
+    - docker_file_sync__container_name
+    - docker_file_sync__image
+    - docker_file_sync__restart
+    - docker_file_sync__restart_policy
+    - docker_file_sync__state
+    - docker_file_sync__hostname
+    - docker_file_sync__volumes
+    - docker_file_sync__timezone
+    - docker_file_sync__method
+    - docker_file_sync__wget_url
+    - docker_file_sync__wget_dir
+    - docker_file_sync__wget_file_name
+    - docker_file_sync__wget_fisnihed_marker

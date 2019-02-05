@@ -1,0 +1,7 @@
+---
+
+- name: "Pull {{ docker_vpncloud__image }} image"
+  become: true
+  docker_image:
+    name: "{{ docker_vpncloud__image }}"
+    state: present

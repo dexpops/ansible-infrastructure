@@ -3,6 +3,4 @@
 # Deploy and setup bitcoin services
 # ------------------------------------------------------------------------------------------
 
-- import_playbook: __partial_netbox.yml
-
 - import_playbook: __partial_bitcoind.yml

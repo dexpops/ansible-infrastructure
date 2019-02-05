@@ -1,0 +1,50 @@
+# wget http://utxosets.blob.core.windows.net/public/utxo-snapshot-bitcoin-mainnet-551636.tar
+docker_vpncloud__container_name: vpncloud
+docker_vpncloud__image: "dexpops/docker-vpncloud:latest"
+docker_vpncloud__restart: no
+docker_vpncloud__restart_policy: always
+docker_vpncloud__state: started
+docker_vpncloud__hostname: "{{ ansible_hostname }}"
+docker_vpncloud__volumes:
+  - vpncloud-volume:/etc/vpncloud
+docker_vpncloud__timezone: "{{ timezone__zone }}"
+
+# each vpn running on their own port
+docker_vpncloud__port: 3210
+
+# members of our private network
+docker_vpncloud__peers:
+  - srv2.domain.com:3210
+  - srv3.domain.com:3210
+
+# timeouts
+docker_vpncloud__peer_timeout: 1800
+docker_vpncloud__dst_timeout: 300
+
+# token that identifies the network and helps to distinguish from other networks
+docker_vpncloud__magic: "76706e01"
+
+# pre shared key
+docker_vpncloud__shared_key: "VeryStrongPreSharedKey_ThatShouldBeChanged"
+
+# encryption
+docker_vpncloud__crypto: aes256
+
+# device info
+docker_vpncloud__device_name: "vpncloud%d"
+docker_vpncloud__device_type: tap
+
+# vpn modes: hub / switch / router / normal
+docker_vpncloud__mode: normal
+
+# subnet to be used for our private network
+docker_vpncloud__subnets:
+  - 10.0.1.0/24
+
+# command to setup the network
+docker_vpncloud__ifup: "ifconfig $IFNAME 10.0.1.1/24 mtu 1400"
+docker_vpncloud__ifdown: "ifconfig $IFNAME down"
+
+# user/group owning the process
+docker_vpncloud__user: "root"
+docker_vpncloud__group: "root"

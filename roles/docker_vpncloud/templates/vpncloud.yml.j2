@@ -1,0 +1,36 @@
+# each vpn running on their own port
+port: {{docker_vpncloud__port}}
+
+# members of our private network
+peers: {{docker_vpncloud__peers}}
+
+# timeouts
+peer_timeout: {{docker_vpncloud__peer_timeout}}
+dst_timeout: {{docker_vpncloud__dst_timeout}}
+
+# token that identifies the network and helps to distinguish from other networks
+magic: "{{docker_vpncloud__magic}}"
+
+# pre shared key
+shared_key: "{{docker_vpncloud__shared_key}}"
+
+# encryption
+crypto: {{docker_vpncloud__crypto}}
+
+# device info
+device_name: "{{docker_vpncloud__device_name}}"
+device_type: {{docker_vpncloud__device_type}}
+
+# vpn modes: hub / switch / router / normal
+mode: {{docker_vpncloud__mode}}
+
+# subnet to be used for our private network
+subnets: {{docker_vpncloud__subnets}}
+
+# command to setup the network
+ifup: "{{docker_vpncloud__ifup}}"
+ifdown: "{{docker_vpncloud__ifdown}}"
+
+# user/group owning the process
+user: "{{docker_vpncloud__user}}"
+group: "{{docker_vpncloud__group}}"

@@ -1,0 +1,19 @@
+- name: "Container | Handle bitcoind"
+  become: true
+  docker_container:
+    name: "{{ docker_bitcoind__container_name}}"
+    image: "{{ docker_bitcoind__image}}"
+    restart: "{{ docker_bitcoind__restart }}"
+    restart_policy: "{{ docker_bitcoind__restart_policy }}"
+    state: "{{ docker_bitcoind__state }}"
+    hostname: "{{ docker_bitcoind__hostname }}"
+    volumes: "{{ docker_bitcoind__volumes }}"
+    network_mode: bridge
+    ports:
+      - "8333:8333"
+      - "8332:8332"
+    env:
+      TZ: "{{ docker_bitcoind__timezone }}"
+      FAST_SYNC_MODE: "{{ docker_bitcoind__fast_sync_mode }}"
+      BITCOIN_UTXO_SNAPSHOT: "{{ docker_bitcoind__utxo_snapshot }}"
+      BITCOIN_UTXO_MARKER: "{{ docker_bitcoind__utxo_marker }}"  

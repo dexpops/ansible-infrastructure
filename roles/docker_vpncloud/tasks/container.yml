@@ -1,0 +1,19 @@
+- name: "Container | Handle bitcoind"
+  become: true
+  docker_container:
+    name: "{{ docker_vpncloud__container_name}}"
+    image: "{{ docker_vpncloud__image}}"
+    restart: "{{ docker_vpncloud__restart }}"
+    restart_policy: "{{ docker_vpncloud__restart_policy }}"
+    state: "{{ docker_vpncloud__state }}"
+    hostname: "{{ docker_vpncloud__hostname }}"
+    volumes: "{{ docker_vpncloud__volumes }}"
+    network_mode: bridge
+    ports:
+      - "8333:8333"
+      - "8332:8332"
+    env:
+      TZ: "{{ docker_vpncloud__timezone }}"
+      FAST_SYNC_MODE: "{{ docker_vpncloud__fast_sync_mode }}"
+      BITCOIN_UTXO_SNAPSHOT: "{{ docker_vpncloud__utxo_snapshot }}"
+      BITCOIN_UTXO_MARKER: "{{ docker_vpncloud__utxo_marker }}"  

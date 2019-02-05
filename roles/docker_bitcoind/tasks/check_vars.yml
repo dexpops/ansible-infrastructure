@@ -1,0 +1,17 @@
+---
+
+#
+# Checking that required variables are set
+#
+- name: Checking that required variables are set
+  fail: msg="{{ item }} is empty or not defined"
+  when: vars[item] is undefined or vars[item] == ""
+  with_items:
+    - docker_bitcoind__container_name
+    - docker_bitcoind__image
+    - docker_bitcoind__restart
+    - docker_bitcoind__restart_policy
+    - docker_bitcoind__state
+    - docker_bitcoind__volumes
+    - docker_bitcoind__timezone
+    - docker_bitcoind__hostname

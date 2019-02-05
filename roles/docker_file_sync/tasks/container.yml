@@ -1,0 +1,18 @@
+- name: "Container | Handle file_sync"
+  become: true
+  docker_container:
+    name: "{{ docker_file_sync__container_name}}"
+    image: "{{ docker_file_sync__image}}"
+    restart: "{{ docker_file_sync__restart }}"
+    restart_policy: "{{ docker_file_sync__restart_policy }}"
+    state: "{{ docker_file_sync__state }}"
+    hostname: "{{ docker_file_sync__hostname }}"
+    volumes: "{{ docker_file_sync__volumes }}"
+    network_mode: bridge
+    env:
+      TZ: "{{ docker_file_sync__timezone }}"
+      METHOD: "{{ docker_file_sync__method }}"
+      WGET_URL: "{{ docker_file_sync__wget_url }}"
+      WGET_DIR: "{{ docker_file_sync__wget_dir }}"
+      WGET_FILE_NAME: "{{ docker_file_sync__wget_file_name }}"
+      WGET_FISNIHED_MARKER: "{{ docker_file_sync__wget_fisnihed_marker }}"
