@@ -11,11 +11,6 @@ docker_vpncloud__volumes:
 # each vpn running on their own port
 docker_vpncloud__port: 3210
 
-# members of our private network
-docker_vpncloud__peers:
-  - srv2.domain.com:3210
-  - srv3.domain.com:3210
-
 # timeouts
 docker_vpncloud__peer_timeout: 1800
 docker_vpncloud__dst_timeout: 300

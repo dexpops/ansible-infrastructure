@@ -1,0 +1,4 @@
+peers:
+{% for host in ansible_play_batch %}
+  - {{hostvars[host].ansible_host}}:{{docker_vpncloud__port}}
+{% endfor %}

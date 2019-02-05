@@ -15,7 +15,6 @@
     - docker_vpncloud__hostname
     - docker_vpncloud__volumes
     - docker_vpncloud__port
-    - docker_vpncloud__peers
     - docker_vpncloud__peer_timeout
     - docker_vpncloud__dst_timeout
     - docker_vpncloud__magic

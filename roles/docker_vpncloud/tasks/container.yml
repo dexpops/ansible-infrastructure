@@ -12,6 +12,15 @@
     src: vpncloud.yml.j2
     dest: /etc/vpncloud/vpncloud.yml
   become: true
+  register: _docker_vpncloud__config
+
+- name: Check if reload container
+  set_fact:
+    docker_vpncloud__restart: yes
+  when:
+    - _docker_vpncloud__config.changed
+
+- debug: var=groups['vpncloud']
 
 - name: "Container | Handle vpncloud"
   become: true
