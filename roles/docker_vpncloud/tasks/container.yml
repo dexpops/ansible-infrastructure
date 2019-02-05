@@ -1,4 +1,19 @@
-- name: "Container | Handle bitcoind"
+- name: Container | Create config folder
+  become: true
+  file:
+    owner: root
+    group: root
+    mode: 0600
+    state: directory
+    path: /etc/vpncloud
+
+- name: Container | Copy config
+  template:
+    src: vpncloud.yml.j2
+    dest: /etc/vpncloud/vpncloud.yml
+  become: true
+
+- name: "Container | Handle vpncloud"
   become: true
   docker_container:
     name: "{{ docker_vpncloud__container_name}}"
@@ -8,12 +23,5 @@
     state: "{{ docker_vpncloud__state }}"
     hostname: "{{ docker_vpncloud__hostname }}"
     volumes: "{{ docker_vpncloud__volumes }}"
-    network_mode: bridge
-    ports:
-      - "8333:8333"
-      - "8332:8332"
-    env:
-      TZ: "{{ docker_vpncloud__timezone }}"
-      FAST_SYNC_MODE: "{{ docker_vpncloud__fast_sync_mode }}"
-      BITCOIN_UTXO_SNAPSHOT: "{{ docker_vpncloud__utxo_snapshot }}"
-      BITCOIN_UTXO_MARKER: "{{ docker_vpncloud__utxo_marker }}"  
+    network_mode: host
+    privileged: True

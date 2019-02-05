@@ -1,4 +1,4 @@
-# wget http://utxosets.blob.core.windows.net/public/utxo-snapshot-bitcoin-mainnet-551636.tar
+
 docker_vpncloud__container_name: vpncloud
 docker_vpncloud__image: "dexpops/docker-vpncloud:latest"
 docker_vpncloud__restart: no
@@ -6,8 +6,7 @@ docker_vpncloud__restart_policy: always
 docker_vpncloud__state: started
 docker_vpncloud__hostname: "{{ ansible_hostname }}"
 docker_vpncloud__volumes:
-  - vpncloud-volume:/etc/vpncloud
-docker_vpncloud__timezone: "{{ timezone__zone }}"
+  - /etc/vpncloud/vpncloud.yml:/etc/vpncloud/vpncloud.yml:ro
 
 # each vpn running on their own port
 docker_vpncloud__port: 3210
@@ -41,8 +40,11 @@ docker_vpncloud__mode: normal
 docker_vpncloud__subnets:
   - 10.0.1.0/24
 
+docker_vpncloud__ipv4_address:
+docker_vpncloud__mtu: 1400
+
 # command to setup the network
-docker_vpncloud__ifup: "ifconfig $IFNAME 10.0.1.1/24 mtu 1400"
+docker_vpncloud__ifup: "ifconfig $IFNAME {{docker_vpncloud__ipv4_address}} mtu {{docker_vpncloud__mtu}}"
 docker_vpncloud__ifdown: "ifconfig $IFNAME down"
 
 # user/group owning the process

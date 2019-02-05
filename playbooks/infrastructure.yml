@@ -11,6 +11,10 @@
   tags:
     - infrastructure:bootstrap_os
 
+- import_playbook: __partial_vpncloud.yml
+  tags:
+    - infrastructure:vpncloud
+
 - import_playbook: __partial_netbox.yml
   tags:
     - infrastructure:netbox
