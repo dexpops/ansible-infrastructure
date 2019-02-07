@@ -10,6 +10,7 @@ docker_vpncloud__volumes:
 
 # each vpn running on their own port
 docker_vpncloud__port: 3210
+docker_vpncloud__enable: False
 
 # timeouts
 docker_vpncloud__peer_timeout: 1800
@@ -34,6 +35,8 @@ docker_vpncloud__mode: normal
 # subnet to be used for our private network
 docker_vpncloud__subnets:
   - 10.0.1.0/24
+
+docker_vpncloud__peers: []
 
 docker_vpncloud__ipv4_address:
 docker_vpncloud__mtu: 1400

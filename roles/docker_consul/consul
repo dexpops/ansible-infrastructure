@@ -1,0 +1,24 @@
+
+docker run --rm --net=host --name=consul \
+-e CONSUL_BIND_INTERFACE=eth1 \
+-e CONSUL_CLIENT_INTERFACE=eth1 \
+-d consul agent \
+-server -ui \
+-bootstrap-expect=1 \
+-datacenter fra1 \
+-advertise-wan 10.0.1.10
+
+docker run --rm --name=consul --net=host \
+-e CONSUL_BIND_INTERFACE=eth1 \
+-e CONSUL_CLIENT_INTERFACE=eth1 \
+consul agent \
+-datacenter fra1 \
+--retry-join=10.135.97.34
+
+
+docker stop consul && docker rm consul
+consul members -http-addr=10.10.10.10:8500
+consul members -wan -http-addr=10.10.10.10:8500
+consul join -wan 46.101.127.47 -http-addr=10.136.92.22:8500
+#-serf-wan-bind 46.101.127.47
+

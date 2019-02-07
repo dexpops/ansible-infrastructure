@@ -2,7 +2,7 @@
 # Maintainer: Karsten Kaj Jakobsen <karsten@karstenjakobsen.dk>
 # ------------------------------------------------------------------------------------------
 
-- hosts: vpncloud
+- hosts: all
 
   roles:
 

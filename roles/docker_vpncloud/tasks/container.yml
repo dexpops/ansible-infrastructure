@@ -20,8 +20,6 @@
   when:
     - _docker_vpncloud__config.changed
 
-- debug: var=groups['vpncloud']
-
 - name: "Container | Handle vpncloud"
   become: true
   docker_container:

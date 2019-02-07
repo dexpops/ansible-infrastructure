@@ -23,8 +23,7 @@
     - docker_vpncloud__device_name
     - docker_vpncloud__device_type
     - docker_vpncloud__mode
-    - docker_vpncloud__subnets
-    - docker_vpncloud__ipv4_address
+    - docker_vpncloud__subnets    
     - docker_vpncloud__mtu
     - docker_vpncloud__ifup
     - docker_vpncloud__ifdown
