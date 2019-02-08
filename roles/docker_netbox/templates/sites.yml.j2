@@ -1,0 +1,6 @@
+{% for site in docker_netbox__inventory.sites %}
+- name: {{ site.name }}
+  slug: {{ site.slug }}
+  region: {{ site.region }}
+  status: {{ site.status }}
+{% endfor %}

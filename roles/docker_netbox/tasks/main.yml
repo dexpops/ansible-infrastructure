@@ -1,0 +1,39 @@
+---
+
+- import_tasks: check_vars.yml
+  tags:
+    - netbox
+    - netbox:check_vars
+    - check_vars
+
+- import_tasks: clone_git.yml
+  when:
+    - not docker_netbox__uninstall
+  tags:
+    - netbox
+    - netbox:clone_git
+    - clone_git
+
+- import_tasks: install.yml
+  when:
+    - not docker_netbox__uninstall
+  tags:
+    - netbox
+    - netbox:install
+    - install
+
+- import_tasks: upgrade.yml
+  when:
+    - not docker_netbox__uninstall
+  tags:
+    - never
+    - netbox:upgrade
+    - upgrade
+
+- import_tasks: uninstall.yml
+  when:
+    - docker_netbox__uninstall
+  tags:
+    - never
+    - netbox:uninstall
+    - uninstall

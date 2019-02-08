@@ -1,9 +1,0 @@
-{% for tenant in netbox__inventory.tenants %}
-{% for site in tenant.sites %}
-- name: {{ site.name }}
-  slug: {{ site.slug }}
-  status: {{ site.status }}
-  facility: {{ site.facility }}
-  tenant: {{ tenant.slug }}
-{% endfor %}
-{% endfor %}

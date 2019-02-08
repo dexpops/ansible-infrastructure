@@ -1,0 +1,4 @@
+{% for tenant in docker_netbox__inventory.tenants %}
+- name: {{ tenant.name }}
+  slug: {{ tenant.slug }}
+{% endfor %}

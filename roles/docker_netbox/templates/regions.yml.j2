@@ -1,0 +1,4 @@
+{% for region in docker_netbox__inventory.regions %}
+- name: {{ region.name }}
+  slug: {{ region.slug }}
+{% endfor %}

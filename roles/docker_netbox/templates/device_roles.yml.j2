@@ -1,0 +1,5 @@
+{% for role in docker_netbox__inventory.device_roles %}
+- name: {{ role.name }}
+  slug: {{ role.slug }}
+  color: {{ role.color }}
+{% endfor %}

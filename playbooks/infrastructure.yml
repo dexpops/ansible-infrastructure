@@ -11,6 +11,6 @@
   tags:
     - infrastructure:vpncloud
 
-- import_playbook: __partial_netbox.yml
+- import_playbook: __partial_docker_netbox.yml
   tags:
     - infrastructure:netbox

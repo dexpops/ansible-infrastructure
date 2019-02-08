@@ -1,0 +1,15 @@
+---
+
+#
+# Checking that required variables are set
+#
+- name: Checking that required variables are set
+  fail: msg="{{ item }} is empty or not defined"
+  when: vars[item] is undefined or vars[item] == ""
+  with_items:
+    - docker_netbox__admin_token
+    - docker_netbox__admin_password
+    - docker_netbox__install_dir
+    - docker_netbox__git_url
+    - docker_netbox__nginx_container_name
+    - docker_netbox__nginx_listen_port    

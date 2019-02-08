@@ -1,0 +1,20 @@
+---
+
+- name: "Create folder"
+  become: true
+  file:
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+    path: "{{ docker_netbox__install_dir }}"
+  register: install_dir
+
+- name: "Fetch Netbox Docker Repo version {{ docker_netbox__version }}"
+  when:
+    - install_dir.changed
+  become: true
+  git:
+    repo: "{{ docker_netbox__git_url }}"
+    dest: "{{ docker_netbox__install_dir }}"
+    version: "{{ docker_netbox__version }}"

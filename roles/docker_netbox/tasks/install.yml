@@ -1,0 +1,69 @@
+---
+
+- name: "Use port {{ docker_netbox__nginx_listen_port }}"
+  become: true
+  replace:
+    path: "{{ docker_netbox__install_dir }}/docker-compose.yml"
+    regexp: "- 8080$"
+    replace: "- {{ docker_netbox__nginx_listen_port }}:8080"
+
+- name: Change admin token
+  become: true
+  replace:
+    path: "{{ docker_netbox__install_dir }}/env/netbox.env"
+    regexp: '(^SUPERUSER_API_TOKEN=.*)'
+    replace: "SUPERUSER_API_TOKEN={{ docker_netbox__admin_token }}"
+
+- name: Change admin password
+  become: true
+  replace:
+    path: "{{ docker_netbox__install_dir }}/env/netbox.env"
+    regexp: '(^SUPERUSER_PASSWORD=.*)'
+    replace: 'SUPERUSER_PASSWORD={{ docker_netbox__admin_password }}'
+
+- name: Make sure login is required
+  become: true
+  lineinfile:
+    path: "{{ docker_netbox__install_dir }}/env/netbox.env"
+    line: 'LOGIN_REQUIRED=true'
+
+- name: Copy Initializers sites
+  become: true
+  template:
+    src: "{{item}}.yml.j2"
+    dest: "{{ docker_netbox__install_dir }}/initializers/{{item}}.yml"
+    owner: root
+    group: root
+    mode: 0644
+  register: initializers
+  with_items:
+    - tenants
+    - regions
+    - sites
+    - device_roles
+
+- name: Copy startup scripts
+  become: true
+  copy:
+    src: "files/startup_scripts/{{item}}"
+    dest: "{{ docker_netbox__install_dir }}/startup_scripts/{{item}}"
+    owner: root
+    group: root
+    mode: 0644
+  register: startup_scripts
+  with_items:
+    - 031_tenants.py
+
+- name: "Command docker-compose up -d"
+  become: true
+  command: 'docker-compose up -d'
+  args:
+    chdir: "{{ docker_netbox__install_dir }}"
+  changed_when: False
+
+- name: Information about server
+  debug:
+    msg:
+      - "Server successfully installed!"
+      - "Netbox now running at {{docker_netbox__dashboard_url}}"
+      - "Credentials: admin, pass: {{ docker_netbox__admin_password }}"

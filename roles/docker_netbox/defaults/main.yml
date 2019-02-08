@@ -1,0 +1,15 @@
+---
+
+docker_netbox__admin_token: aaaaabbbcccddeeeffffffggg12223334444
+docker_netbox__admin_password: test1234
+docker_netbox__install_dir: /opt/netbox
+docker_netbox__git_url: https://github.com/ninech/netbox-docker.git
+docker_netbox__nginx_listen_port: 8080
+docker_netbox__nginx_protocol: http
+docker_netbox__nginx_container_name: netbox_nginx_1
+docker_netbox__uninstall: False
+docker_netbox__api_url: "{{docker_netbox__dashboard_url}}/api"
+docker_netbox__dashboard_url: "http://{{ansible_host}}:8080"
+docker_netbox__version: master
+
+docker_netbox__inventory: []
