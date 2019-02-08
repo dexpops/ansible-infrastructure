@@ -28,6 +28,17 @@ https://github.com/adammck/terraform-inventory/blob/master/bin/dist
 
 create own version `./dist 0.8.0`
 
+# Logical datacenters
+http://www.historyplace.com/worldhistory/topten/index.html
+
+Yorktown
+Hastings
+Stalingrad
+Leipzig
+Antietam
+Cajamarca
+Waterloo
+Vienna
 
 
 

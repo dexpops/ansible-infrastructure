@@ -1,16 +1,22 @@
 - import_tasks: check_vars.yml
+  when:
+    - docker_vpncloud__enable
   tags:
     - docker_vpncloud
     - docker_vpncloud:check_vars
     - check_vars
 
 - import_tasks: image.yml
+  when:
+    - docker_vpncloud__enable
   tags:
     - docker_vpncloud
     - docker_vpncloud:image
     - image
 
 - import_tasks: container.yml
+  when:
+    - docker_vpncloud__enable
   tags:
     - docker_vpncloud
     - docker_vpncloud:container

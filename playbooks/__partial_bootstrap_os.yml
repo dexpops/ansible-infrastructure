@@ -2,9 +2,23 @@
 # Maintainer: Karsten Kaj Jakobsen <karsten@karstenjakobsen.dk>
 # ------------------------------------------------------------------------------------------
 
+
 # This bootstraps python for CoreOS
 - hosts: all
   gather_facts: False
+
+  pre_tasks:
+
+    - name: Debugging play hosts
+      debug:
+        msg:
+          - "hostname: {{item}}"
+          - "IPv4: {{ hostvars[item].ansible_host }}"
+      run_once: true
+      with_items: "{{ ansible_play_batch }}"
+
+    - pause:
+        prompt: Press Enter to continue
 
   roles:
 

@@ -1,19 +1,65 @@
 
 docker run --rm --net=host --name=consul \
--e CONSUL_BIND_INTERFACE=eth1 \
--e CONSUL_CLIENT_INTERFACE=eth1 \
+-e CONSUL_BIND_INTERFACE=wantun0 \
+-e CONSUL_CLIENT_INTERFACE=wantun0 \
+-d consul agent \
+-server -ui \
+-bootstrap-expect=2 \
+-datacenter yorktown
+
+docker run --rm --net=host --name=consul \
+-d consul agent -server -ui \
+-client='{{ GetInterfaceIP "wantun0" }}' \
+-bind='{{ GetInterfaceIP "wantun0" }}' \
+-bootstrap-expect=2 \
+-datacenter yorktown
+
+-advertise-wan 68.183.75.238 \
+-advertise-wan 68.183.75.238 \
+-serf-wan-bind 68.183.75.238
+
+docker run --rm --name=consul --net=host \
+consul agent \
+-client='{{ GetInterfaceIP "wantun0" }}' \
+-bind='{{ GetInterfaceIP "wantun0" }}' \
+-datacenter yorktown \
+-advertise='68.183.118.47' \
+--retry-join=10.1.20.20
+
+
+docker run --rm --name=consul --net=host \
+consul agent \
+-client='{{ GetInterfaceIP "wantun0" }}' \
+-bind='{{ GetInterfaceIP "wantun0" }}' \
+-datacenter yorktown \
+--retry-join=10.1.20.20
+
+################################
+DC2
+################################
+
+
+docker run --rm --net=host --name=consul \
+-e CONSUL_BIND_INTERFACE=eth0 \
+-e CONSUL_CLIENT_INTERFACE=eth0 \
 -d consul agent \
 -server -ui \
 -bootstrap-expect=1 \
--datacenter fra1 \
--advertise-wan 10.0.1.10
+-datacenter nyc1
+
+-advertise-wan 142.93.250.222 \
+-serf-wan-bind 142.93.250.222
 
 docker run --rm --name=consul --net=host \
--e CONSUL_BIND_INTERFACE=eth1 \
--e CONSUL_CLIENT_INTERFACE=eth1 \
+-e CONSUL_BIND_INTERFACE=eth0 \
+-e CONSUL_CLIENT_INTERFACE=eth0 \
 consul agent \
--datacenter fra1 \
---retry-join=10.135.97.34
+-datacenter nyc1 \
+--retry-join=142.93.250.222
+
+##################################
+COMMANDS
+##################################
 
 
 docker stop consul && docker rm consul
@@ -21,4 +67,5 @@ consul members -http-addr=10.10.10.10:8500
 consul members -wan -http-addr=10.10.10.10:8500
 consul join -wan 46.101.127.47 -http-addr=10.136.92.22:8500
 #-serf-wan-bind 46.101.127.47
+consul join -wan
 

@@ -2,7 +2,7 @@
 port: {{docker_vpncloud__port}}
 
 # members of our private network
-peers: {{docker_vpncloud__peers}}
+{{ lookup('template','peers.yml.j2')}}
 
 # timeouts
 peer_timeout: {{docker_vpncloud__peer_timeout}}

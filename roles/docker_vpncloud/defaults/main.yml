@@ -33,8 +33,7 @@ docker_vpncloud__device_type: tap
 docker_vpncloud__mode: normal
 
 # subnet to be used for our private network
-docker_vpncloud__subnets:
-  - 10.0.1.0/24
+docker_vpncloud__subnets: []
 
 docker_vpncloud__peers: []
 
