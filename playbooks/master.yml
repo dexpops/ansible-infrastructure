@@ -3,4 +3,6 @@
 # Deploy and setup bitcoin services
 # ------------------------------------------------------------------------------------------
 
-- import_playbook: __partial_bitcoind.yml
+- import_playbook: __partial_bootstrap_os.yml
+
+- import_playbook: __partial_docker_bitcoind.yml

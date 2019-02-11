@@ -1,0 +1,19 @@
+- name: "Container | Handle blocknetdx"
+  become: true
+  docker_container:
+    name: "{{ docker_blocknetdx__container_name}}"
+    image: "{{ docker_blocknetdx__image}}"
+    restart: "{{ docker_blocknetdx__restart }}"
+    restart_policy: "{{ docker_blocknetdx__restart_policy }}"
+    state: "{{ docker_blocknetdx__state }}"
+    hostname: "{{ docker_blocknetdx__hostname }}"
+    volumes: "{{ docker_blocknetdx__volumes }}"
+    network_mode: bridge
+    ports:
+      - "8333:8333"
+      - "8332:8332"
+    env:
+      TZ: "{{ docker_blocknetdx__timezone }}"
+      FAST_SYNC_MODE: "{{ docker_blocknetdx__fast_sync_mode }}"
+      BITCOIN_UTXO_SNAPSHOT: "{{ docker_blocknetdx__utxo_snapshot }}"
+      BITCOIN_UTXO_MARKER: "{{ docker_blocknetdx__utxo_marker }}"

@@ -1,0 +1,17 @@
+---
+
+#
+# Checking that required variables are set
+#
+- name: Checking that required variables are set
+  fail: msg="{{ item }} is empty or not defined"
+  when: vars[item] is undefined or vars[item] == ""
+  with_items:
+    - docker_blocknetdx__container_name
+    - docker_blocknetdx__image
+    - docker_blocknetdx__restart
+    - docker_blocknetdx__restart_policy
+    - docker_blocknetdx__state
+    - docker_blocknetdx__volumes
+    - docker_blocknetdx__timezone
+    - docker_blocknetdx__hostname

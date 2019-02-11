@@ -2,9 +2,9 @@
 # Maintainer: Karsten Kaj Jakobsen <karsten@karstenjakobsen.dk>
 # ------------------------------------------------------------------------------------------
 
-- hosts: bitcoind
+- hosts: pop
 
   roles:
 
     # Bootstrap bitcoind node
-    - role: bitcoind
+    - role: docker_bitcoind

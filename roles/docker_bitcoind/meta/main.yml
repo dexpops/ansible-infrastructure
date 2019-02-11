@@ -2,12 +2,12 @@
 
 dependencies:
 
-- role: file_sync
+- role: docker_file_sync
   vars:
     docker_file_sync__container_name: "{{ docker_bitcoind__container_name }}_file_sync"
     docker_file_sync__volumes:
       - /utxo:/utxo
     docker_file_sync__wget_url: "http://utxosets.blob.core.windows.net/public/utxo-snapshot-bitcoin-mainnet-551636.tar"
     docker_file_sync__wget_dir: "/utxo"
-    docker_file_sync__wget_file_name: "utxo-snapshot.tar"
-    docker_file_sync__wget_fisnihed_marker: ".finished_utxo"
+    docker_file_sync__wget_file_name: "utxo_snapshot_bitcoind.tar"
+    docker_file_sync__wget_fisnihed_marker: ".finished_utx_bitcoind"

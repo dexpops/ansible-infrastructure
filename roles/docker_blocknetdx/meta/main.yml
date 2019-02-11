@@ -1,0 +1,13 @@
+---
+
+dependencies:
+
+- role: docker_file_sync
+  vars:
+    docker_file_sync__container_name: "{{ docker_blocknetdx__container_name }}_file_sync"
+    docker_file_sync__volumes:
+      - /utxo:/utxo
+    docker_file_sync__wget_url: "https://github.com/BlocknetDX/blocknet-blockchain-bootstrap/releases/download/v1.0/BlocknetDX.zip"
+    docker_file_sync__wget_dir: "/utxo"
+    docker_file_sync__wget_file_name: "utxo_snapshot_blocknetdx.tar"
+    docker_file_sync__wget_fisnihed_marker: ".finished_utxo_blocknetdx"

@@ -10,5 +10,5 @@ docker_bitcoind__volumes:
   - /utxo:/utxo:ro
 docker_bitcoind__timezone: "{{ timezone__zone }}"
 docker_bitcoind__fast_sync_mode: "1"
-docker_bitcoind__utxo_snapshot: "/utxo/utxo-snapshot.tar"
-docker_bitcoind__utxo_marker: /utxo/.finished_utxo
+docker_bitcoind__utxo_snapshot: "{{docker_file_sync__wget_dir}}/{{docker_file_sync__wget_file_name}}"
+docker_bitcoind__utxo_marker: "{{docker_file_sync__wget_dir}}/{{docker_file_sync__wget_fisnihed_marker}}"

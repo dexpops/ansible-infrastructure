@@ -1,0 +1,17 @@
+- import_tasks: check_vars.yml
+  tags:
+    - docker_blocknetdx
+    - docker_blocknetdx:check_vars
+    - check_vars
+
+- import_tasks: image.yml
+  tags:
+    - docker_blocknetdx
+    - docker_blocknetdx:image
+    - image
+
+- import_tasks: container.yml
+  tags:
+    - docker_blocknetdx
+    - docker_blocknetdx:container
+    - container

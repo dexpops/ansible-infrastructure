@@ -1,17 +1,17 @@
 - import_tasks: check_vars.yml
   tags:
-    - bitcoind
-    - bitcoind:check_vars
+    - docker_bitcoind
+    - docker_bitcoind:check_vars
     - check_vars
 
 - import_tasks: image.yml
   tags:
-    - bitcoind
-    - bitcoind:image
+    - docker_bitcoind
+    - docker_bitcoind:image
     - image
 
 - import_tasks: container.yml
   tags:
-    - bitcoind
-    - bitcoind:container
+    - docker_bitcoind
+    - docker_bitcoind:container
     - container

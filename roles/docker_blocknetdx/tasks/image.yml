@@ -1,0 +1,7 @@
+---
+
+- name: "Pull {{ docker_blocknetdx__image }} image"
+  become: true
+  docker_image:
+    name: "{{ docker_blocknetdx__image }}"
+    state: present
