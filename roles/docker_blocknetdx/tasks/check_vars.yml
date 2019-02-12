@@ -13,5 +13,4 @@
     - docker_blocknetdx__restart_policy
     - docker_blocknetdx__state
     - docker_blocknetdx__volumes
-    - docker_blocknetdx__timezone
     - docker_blocknetdx__hostname

@@ -1,10 +1,10 @@
 # ------------------------------------------------------------------------------------------
 # Maintainer: Karsten Kaj Jakobsen <karsten@karstenjakobsen.dk>
-# Deploy and setup bitcoin services
 # ------------------------------------------------------------------------------------------
 
-- import_playbook: __partial_bootstrap_os.yml
+- hosts: pop
 
-- import_playbook: __partial_docker_bitcoind.yml
+  roles:
 
-- import_playbook: __partial_docker_blocknetdx.yml
+    # Bootstrap blocknetdx node
+    - role: docker_blocknetdx

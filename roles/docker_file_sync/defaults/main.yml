@@ -5,7 +5,6 @@ docker_file_sync__restart_policy: always
 docker_file_sync__state: started
 docker_file_sync__hostname: "{{ ansible_hostname }}"
 docker_file_sync__volumes: []
-docker_file_sync__timezone: "{{ timezone__zone }}"
 docker_file_sync__method: "wget"
 docker_file_sync__wget_url: "http://example.com/filename.tar"
 docker_file_sync__wget_dir: "/file_dir"

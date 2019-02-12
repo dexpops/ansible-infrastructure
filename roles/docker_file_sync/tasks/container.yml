@@ -10,7 +10,6 @@
     volumes: "{{ docker_file_sync__volumes }}"
     network_mode: bridge
     env:
-      TZ: "{{ docker_file_sync__timezone }}"
       METHOD: "{{ docker_file_sync__method }}"
       WGET_URL: "{{ docker_file_sync__wget_url }}"
       WGET_DIR: "{{ docker_file_sync__wget_dir }}"

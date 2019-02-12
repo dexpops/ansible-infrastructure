@@ -13,5 +13,4 @@
     - docker_bitcoind__restart_policy
     - docker_bitcoind__state
     - docker_bitcoind__volumes
-    - docker_bitcoind__timezone
     - docker_bitcoind__hostname

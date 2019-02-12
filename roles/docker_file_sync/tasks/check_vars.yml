@@ -14,7 +14,6 @@
     - docker_file_sync__state
     - docker_file_sync__hostname
     - docker_file_sync__volumes
-    - docker_file_sync__timezone
     - docker_file_sync__method
     - docker_file_sync__wget_url
     - docker_file_sync__wget_dir
