@@ -1,0 +1,7 @@
+---
+
+- name: "Image | Pull image"
+  become: true
+  docker_image:
+    name: "{{ docker_consul__image }}"
+    state: present

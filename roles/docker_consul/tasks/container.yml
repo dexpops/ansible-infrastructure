@@ -1,0 +1,24 @@
+- name: Debug start options
+  debug:
+    msg:
+      - "Command: {{ docker_consul__command }}"
+
+- name: "Bootstrap | Bootstrap cluster"
+  become: true
+  docker_container:
+    name: "{{ docker_consul__container_name }}"
+    image: "{{ docker_consul__image}}"
+    restart: "{{ docker_consul__restart }}"
+    restart_policy: "{{ docker_consul__restart_policy }}"
+    state: "{{ docker_consul__state }}"
+    hostname: "{{ docker_consul__hostname }}"
+    volumes: "{{ docker_consul__volumes }}"
+    network_mode: host
+    command: "{{ docker_consul__command }}"
+    env:
+      CONSUL_BIND_INTERFACE: "{{ docker_consul__consul_bind_interface }}"
+      CONSUL_CLIENT_INTERFACE: "{{ docker_consul__consul_client_interface }}"
+
+#  -d consul:latest agent -server -ui -bootstrap-expect=3 -client=0.0.0.0 -bind=0.0.0.0 -datacenter=yorktown --recursor 8.8.8.8 --recursor 8.8.4.4&& \
+# docker run --hostname=server02-local --rm --name=consul-server2 -e CONSUL_BIND_INTERFACE=eth0 -d consul agent -server -bootstrap-expect=3 -retry-join=172.17.0.2 -datacenter=yorktown && \
+# docker run --hostname=server03-local --rm --name=consul-server3 -e CONSUL_BIND_INTERFACE=eth0 -d consul agent -server -bootstrap-expect=3 -retry-join=172.17.0.2 -datacenter=yorktown

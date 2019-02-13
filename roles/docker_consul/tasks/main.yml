@@ -1,0 +1,17 @@
+- import_tasks: check_vars.yml
+  tags:
+    - docker_consul
+    - docker_consul:check_vars
+    - check_vars
+
+- import_tasks: image.yml
+  tags:
+    - docker_consul
+    - docker_consul:image
+    - image
+
+- import_tasks: container.yml
+  tags:
+    - docker_consul
+    - docker_consul:container
+    - container

@@ -1,0 +1,10 @@
+docker_consul__container_name: consul
+docker_consul__image: "consul:1.4.2"
+docker_consul__restart: no
+docker_consul__restart_policy: always
+docker_consul__state: started
+docker_consul__hostname: "{{ ansible_hostname }}"
+docker_consul__volumes: []
+docker_consul__leader: False
+docker_consul__consul_bind_interface: wantun0
+docker_consul__consul_client_interface: lo

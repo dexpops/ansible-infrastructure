@@ -1,0 +1,16 @@
+---
+
+#
+# Checking that required variables are set
+#
+- name: Check | Checking that required variables are set
+  fail: msg="{{ item }} is empty or not defined"
+  when: vars[item] is undefined or vars[item] == ""
+  with_items:
+    - docker_consul__container_name
+    - docker_consul__image
+    - docker_consul__restart
+    - docker_consul__restart_policy
+    - docker_consul__state
+    - docker_consul__hostname
+    - docker_consul__volumes
