@@ -3,9 +3,9 @@
 # Deploy and setup infrastructure
 # ------------------------------------------------------------------------------------------
 
-- import_playbook: __partial_bootstrap_os.yml
+- import_playbook: __partial_bootstrap_python.yml
   tags:
-    - infrastructure:bootstrap_os
+    - infrastructure:bootstrap_python
 
 - import_playbook: __partial_vpncloud.yml
   tags:

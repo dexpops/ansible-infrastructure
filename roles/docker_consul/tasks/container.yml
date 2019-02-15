@@ -1,7 +1,9 @@
 - name: Debug start options
   debug:
     msg:
-      - "Command: {{ docker_consul__command }}"
+      - "command: {{ docker_consul__command }}"
+      - "bind: {{ docker_consul__consul_bind_interface }}"
+      - "client: {{ docker_consul__consul_client_interface }}"
 
 - name: "Bootstrap | Bootstrap cluster"
   become: true

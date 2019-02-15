@@ -1,5 +1,11 @@
 ---
 
+- name: "Image | Pull image"
+  become: true
+  docker_image:
+    name: "netboxcommunity/netbox:latest"
+    state: present
+
 - name: "Use port {{ docker_netbox__nginx_listen_port }}"
   become: true
   replace:
