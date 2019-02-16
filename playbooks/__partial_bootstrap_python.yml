@@ -12,9 +12,8 @@
     - name: Debugging play hosts
       debug:
         msg:
-          - "hostname: {{item}}"
+          - "Hostname: {{item}}"
           - "IPv4: {{ hostvars[item].ansible_host }}"
-          - "Consul floating IP: {{ output__consul_floating_ip }}"
       run_once: true
       with_items: "{{ ansible_play_batch }}"
 
