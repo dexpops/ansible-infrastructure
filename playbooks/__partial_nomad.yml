@@ -2,9 +2,8 @@
 # Maintainer: Karsten Kaj Jakobsen <karsten@karstenjakobsen.dk>
 # ------------------------------------------------------------------------------------------
 
-- hosts: vpncloud
+- hosts: nomad
 
   roles:
 
-    # Bootstrap core service netbox
-    - role: docker_vpncloud
+    - role: nomad

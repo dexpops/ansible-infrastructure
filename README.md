@@ -42,4 +42,7 @@ Vienna
 
 
 
+TODO:
 
+* Add env vars to vpncloud for in cointainer replacement
+* To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled'

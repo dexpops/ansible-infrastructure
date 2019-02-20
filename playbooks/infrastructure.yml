@@ -7,14 +7,10 @@
   tags:
     - infrastructure:bootstrap_python
 
-- import_playbook: __partial_vpncloud.yml
-  tags:
-    - infrastructure:vpncloud
-
 - import_playbook: __partial_docker_consul.yml
   tags:
     - infrastructure:consul
 
-- import_playbook: __partial_docker_netbox.yml
+- import_playbook: __partial_nomad.yml
   tags:
-    - infrastructure:netbox
+    - infrastructure:nomad

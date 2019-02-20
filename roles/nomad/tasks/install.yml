@@ -1,0 +1,12 @@
+- name: Download Nomad
+  get_url:
+    url: https://releases.hashicorp.com/nomad/{{nomad__version}}/nomad_{{nomad__version}}_linux_amd64.zip
+    dest: /home/core
+    mode: 0444
+
+- name: Unarchive Nomad binaries
+  become: true
+  unarchive:
+    src: /home/core/nomad_{{nomad__version}}_linux_amd64.zip
+    dest: /opt/bin
+    remote_src: yes
