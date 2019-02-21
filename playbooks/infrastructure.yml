@@ -10,7 +10,3 @@
 - import_playbook: __partial_docker_consul.yml
   tags:
     - infrastructure:consul
-
-- import_playbook: __partial_nomad.yml
-  tags:
-    - infrastructure:nomad
