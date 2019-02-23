@@ -18,7 +18,6 @@
     network_mode: host
     command: "{{ docker_consul__command }}"
     env:
-      CONSUL_BIND_INTERFACE: "{{ docker_consul__consul_bind_interface }}"
       CONSUL_CLIENT_INTERFACE: "{{ docker_consul__consul_client_interface }}"
 
 # docker run --hostname=consul --rm --name=consul -e CONSUL_BIND_INTERFACE=wantun0 -d consul:latest agent -server -ui -bootstrap-expect=3 -client=0.0.0.0 -bind=0.0.0.0 -datacenter=yorktown --recursor 8.8.8.8 --recursor 8.8.4.4&& \

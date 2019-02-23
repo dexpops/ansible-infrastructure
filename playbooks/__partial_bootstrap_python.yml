@@ -4,7 +4,7 @@
 
 
 # This bootstraps python for CoreOS
-- hosts: consul, netbox, nomad
+- hosts: consul, consul_server
   gather_facts: False
 
   pre_tasks:

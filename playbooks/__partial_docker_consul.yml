@@ -2,7 +2,7 @@
 # Maintainer: Karsten Kaj Jakobsen <karsten@karstenjakobsen.dk>
 # ------------------------------------------------------------------------------------------
 
-- hosts: consul
+- hosts: consul, consul_server
 
   roles:
 
