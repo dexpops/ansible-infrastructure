@@ -45,4 +45,7 @@ Vienna
 TODO:
 
 * Add env vars to vpncloud for in cointainer replacement
+* mape vpncloud a smaller image
 * To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled'
+* Make sure nomad server is not exposede to public internet
+* Setup openvpn
