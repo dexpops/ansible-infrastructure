@@ -40,8 +40,6 @@ Cajamarca
 Waterloo
 Vienna
 
-
-
 TODO:
 
 * Add env vars to vpncloud for in cointainer replacement
@@ -49,3 +47,17 @@ TODO:
 * To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled'
 * Make sure nomad server is not exposede to public internet
 * Setup openvpn
+
+# TIPS
+systemctl list-units --no-pager
+
+sys-devices-virtual-net-docker0.device
+sys-devices-virtual-net-wantun0.device
+
+BindsTo=sys-devices-virtual-net-wantun0.device
+After=sys-devices-virtual-net-wantun0.device`
+
+docker run --net=demo --rm -it robertxie/ubuntu-nettools
+
+docker run --rm --net=host --name=dnsmasq -p 53:53/tcp -p 53:53/udp -v /etc/dnsmasq/dnsmasq.conf:/etc/dnsmasq/dnsmasq.conf:ro --cap-add=NET_ADMIN andyshinn/dnsmasq:2.75 \
+--log-facility=- --conf-file=/etc/dnsmasq/dnsmasq.conf --log-queries -d
