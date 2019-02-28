@@ -61,3 +61,5 @@ docker run --net=demo --rm -it robertxie/ubuntu-nettools
 
 docker run --rm --net=host --name=dnsmasq -p 53:53/tcp -p 53:53/udp -v /etc/dnsmasq/dnsmasq.conf:/etc/dnsmasq/dnsmasq.conf:ro --cap-add=NET_ADMIN andyshinn/dnsmasq:2.75 \
 --log-facility=- --conf-file=/etc/dnsmasq/dnsmasq.conf --log-queries -d
+
+docker run --rm --name=traefik --net=host -v $PWD/traefik.toml:/etc/traefik/traefik.toml -v /var/run/docker.sock:/var/run/docker.sock traefik
