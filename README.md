@@ -63,3 +63,9 @@ docker run --rm --net=host --name=dnsmasq -p 53:53/tcp -p 53:53/udp -v /etc/dnsm
 --log-facility=- --conf-file=/etc/dnsmasq/dnsmasq.conf --log-queries -d
 
 docker run --rm --name=traefik --net=host -v $PWD/traefik.toml:/etc/traefik/traefik.toml -v /var/run/docker.sock:/var/run/docker.sock traefik
+
+Cleanup nomad job:
+`curl -X PUT http://localhost:4646/v1/system/gc`
+`curl --request DELETE http://134.209.81.6:4646/v1/job/webserver\?purge\=true`
+
+HAPROXY ocker run -it --rm --name haproxy-syntax-check -v $(pwd):/usr/local/etc/haproxy:ro --dns=172.17.0.1 haproxy haproxy -c -f /usr/local/etc/haproxy/haproxy.cfg
